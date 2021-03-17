@@ -1,0 +1,2 @@
+Ovom datotekom testiram program za prebrojavanje ponavljanje rijeci.
+Ovom datotekom takoder testiram kako Git funkcionira.
