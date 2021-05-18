@@ -51,6 +51,7 @@ model = keras.Sequential([
     keras.Input(shape = input_shape),
     layers.Conv2D(32, kernel_size=(3, 3),activation='relu'),
     layers.MaxPooling2D(pool_size=(2, 2)),
+    layers.Conv2D(16, kernel_size=(3, 3),activation='relu'),
     layers.Flatten(),
     layers.Dense(10, activation='softmax')
 ])
@@ -59,15 +60,22 @@ model.summary()
 
 # TODO: definiraj karakteristike procesa ucenja pomocu .compile()
 
-
+model.compile(loss='categorical_crossentropy',
+optimizer='sgd',
+metrics=['accuracy'])
 
 # TODO: provedi ucenje mreze
 
-
+model.fit(x_train_s, y_train_s, epochs=6, batch_size=32)
 
 # TODO: Prikazi test accuracy i matricu zabune
 
-
+loss_and_metrics = model.evaluate(x_test_s, y_test_s, batch_size=128)
 
 # TODO: spremi model
 
+model.save('/home/profesor/Downloads')
+
+#predikcija za nove podatke
+
+classes = model.predict(x_test_s, batch_size=128)
